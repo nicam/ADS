@@ -382,9 +382,29 @@ Code
 		}
 	}
 
+Aufwand:
+Best Case: O(N)
+Average Case: O(N^2)
+Worst Case: O(N^2)
 
 ###Selection Sort
-- 
+####Idee
+- Teile die zu sortierenden Elemente in 2 Bereiche auf
+- Füge des kleinste Element der unsortierten Elemente an das Ende der sortierten Elemente
+
+Code
+
+	static void SelectionSort(char[] a){
+		for (int k = 0; k < a.length; k++){
+			int min = k;
+			for (int i = k+1; i < a.length; i ++) {
+				if (a[i] < a[min]) min = i;
+			}
+			if (min != k) swap (a, min, k);
+		}
+	}Aufwand: O(N^2)
+Vorteil: Weniger Swap-Aufrufe als bei Bubble-Sort
+Nachteil: kein Vorteil durch Vorsortierung
 ###Insertion Sort
 
 #Soriteren 2
