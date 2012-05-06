@@ -245,7 +245,83 @@ Bei der direkten Rekursion ruft sich eine Methode selbst wieder auf, bei der ind
 - (-) gewöhnungsbedürftig
 
 #Bäume
+##Begriffe
+<img src="terminologie_tree.png" width="90%">
 
+- Die Tiefe eines Baumes gibt an, wie weit die "tiefsten" Blätter von der Wurzel entfernt sind: Anzahl Kanten + 1
+- Das Gewicht ist die Anzahl der Knoten des (Teil-) Baumes
+
+##Binärbäume
+Die am häufigsten verwendete Art von Bäumen: beim Binärbaum hat ein Knoten maximal 2 Nachfolger
+
+
+
+###Berechnung der nötigen Tiefe:
+ln(10)/ln(2) (Aufrunden)
+Maximale Anzahl
+(2^k)-1 (k = tiefe)
+
+###Traversieren
+
+####Klassen zur Traversierung
+<img src="traversal_klasses.png" width="90%">
+
+####Preorder (Oben nach Unten, Tiefensuche)
+- Besuche die Wurzel
+- Traversiere Links
+- Traversiere Rechts
+
+Code
+
+	private void preorder(TreeNode<T> node, Visitor<T> visitor) { if (node != null) {
+		visitor.visit(node.element);
+		preorder(node.left,visitor);
+		preorder(node.right,visitor);
+	}
+
+####Postorder (Unten nach Oben)
+- Traversiere den linken Teilbaum (in Postorder)
+- Traversiere den rechten Teilbaum (in Postorder).
+- Besuche die Wurzel
+
+Code
+
+    private void postorder(TreeNode<T> node, Visitor<T> visitor) {
+        if (node != null) {
+            postorder(node.left,visitor); 
+            postorder(node.right,visitor); 
+            visitor.visit(node.element);
+        }
+    }
+
+
+
+####Inorder (Links nach rechts)
+
+- Traversiere den linken Teilbaum (in Inorder)
+- Besuche die Wurzel
+- Traversiere den rechten Teilbaum (in Inorder)
+
+Code
+
+    private void inorder(TreeNode<T> node, Visitor<T> visitor) {
+        if (node != null) {
+            inorder(node.left,visitor); 
+            visitor.visit(node.element);
+            inorder(node.right,visitor); 
+        }
+    }
+
+####Levelorder (Breitensuche)
+Beginnend bei der Baumwurzel werden die Ebenen von links nach rechts durchlaufen
+
+- zuerst die Wurzel
+- dann die Wurzel des Linken und rechten Teilbaumes
+- dann die nächste Schicht
+
+###Sortierte Bäume
+- im linken Unterbaum sind alle kleineren Elemente KL <=* k 
+- im rechten Unterbaum sind alle grösseren Elemente: KR >* k
 
 #Sortiere Bäume / Suchen
 
