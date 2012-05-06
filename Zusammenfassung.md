@@ -219,8 +219,33 @@ Keine Typenprüfung möglich if (e instanceof List<LinkedList>).
 Beim Ablauf des Programms kann nicht mehr von z.B. LinkedList<String> und LinkedList<Integer> unterschieden werden.Beide habe zur Laufzeit den Typ LinkedList
 
 #Rekursion
+##Definition
+Ein Algorithmus/Datenstruktur heisst rekursiv definiert, wenn er/sie sich selbst als Teil enthält oder mit Hilfe von sich selbst definiert ist.
+###Direkt / indirekt
+Bei der direkten Rekursion ruft sich eine Methode selbst wieder auf, bei der indirekten Rufen sich 2 Methoden gegenseitig auf (ungewollt).
+
+###Iterativ vs Rekursiv
+
+####Iterativ
+	int anzahlSchritte() {
+		int anzahl = 0; 		while (vorn_frei()) {			vor();			anzahl++; 
+		}		return anzahl;	}
+####Rekursiv
+	int anzahlSchritteR() {
+		if (vorn_frei()) {			vor();			return 1 + anzahlSchritteR(); 
+		} else			return 0;
+		}		
+	}
+###Zusammenfassung
+- Zu jedem rekursiven Algorithmus gibt es einen äquivalenten iterativen Algorithmus
+- (+) kürzere Formulierung
+- (+) Einsparung von Variablen
+- (+) Teilweise sehr effiziente Problemlösung (Quicksort)
+- (-) weniger effizientes Laufzeitverhalten (overhead beim Methodenaufruf)
+- (-) gewöhnungsbedürftig
 
 #Bäume
+
 
 #Sortiere Bäume / Suchen
 
