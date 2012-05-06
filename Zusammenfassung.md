@@ -80,10 +80,107 @@ Anwendungszwecke
 
 
 ##Doppelt verkettete Listen
+Probleme von einfach verketeten Listen
+Zugang zum Listenende kostete viel Zeit
+Man kann sich nur effizient in eine Richtung bewegen
+
+Doppelt verkette Listen
+ListNode next, prev
+Jeder Knoten hat zwei Referenzen next und previous
+Add bei doppelt verketten Listen
+###Add()
+<img src="verkettet2_add.png">
+
+	newNode.next = current;	newNode.prev = current.prev;	current.prev.next = newNode;	current.prev = newNode;
+###Remove()
+
+<img src="verkettet2_remove.png">
+	
+	current.prev.next = current.next;
+	current.next.prev = current.prev;
+	current = current.next;
+
+### Zirkular verkettete Liste
+- Next des letzten zeigt auf head (erstes)
+- Previous des ersten zeigt auf tail (letztes)
+- Effekt: Einziger spezialfall ist eine elere Liste
+
+### Sortierte Listen
+- Verwenden Comparator um bei Insert das Objekt an der richtigen Stelle einzufügen
+
+###Liste Sortieren
+Sofern das Listenobjekt Comparable implementiert, kann mit dieser Methode die Liste sortiert werden.
+
+	Collections.sort(List list);
+Folgende Objekte implementieren bereits Comparable:
+
+Byte, Character, Double, File, Float, Long, ObjectStreamField, Short, String, Integer, BigInteger, BigDecimal, Date
+
+Alternativ kann auch mittels eines Comparators verglichen werden. Der Comparator implementiert das Comaprator interface.
+
+	Collections.sort(List list, Comparator comp);
+
+###Array VS Liste
+####Array
+
+(+) Benutzung sehr einfach<br>
+(+) direkter Zugriff a[5] sehr effizient<br>
+(-) Grösse muss vor erstellen bekannt sein<br>
+
+####Liste
+(-) Schwieriger in der Benutzung<br>
+(-) nur Referenztypen können in Listen verwaltet werden<br>
+(-) Indizierter Zugriff ineffizient list.get(i)<br>
+(+) Anzahl Elemente muss nicht bekannt sein<br>
+(+) Anfügen, ersetzten, vertauschen und Einfügen und Löschen sehr effizient
+
+### Array implementation der Liste (ArrayList)
+
+**LinkedList** 
+- schneller für Mutationen, langsam bei direktem Zugriff- non-synchronized Aufrufe
+
+**ArrayList**
+- Implementation als Array	- direkter Zugriff schnell
+	- Mutationen (einfügen, löschen) langsam- non-synchronized Aufrufe
+
+##Sets
+Definition: eine ungeordnete Menge ohne Duplikate
+
+###Implementation durch
+- Hashset bei grossen Datenbeständen (etwas) effizienter- TreeSet speichert die Elemente in alphabetischer (geordneter) Folge
+
+Code implementation
+
+	Set stooges = new HashSet();
+	stooges.add("Larry"); 
+	stooges.add("Moe");
+	stooges.add("Curly");
+	stooges.add("Moe"); // Duplicate wont be added
+	stooges.add("Shemp"); 
+	stooges.add("Moe"); // Duplicate wont be added
+	System.out.println(stooges);
+
+###Vergleiche von 2 Sets (A und B)
+<img src="set_comparison.png" width="70%">
+
+
+##Collection Interface
+Gemeinsames Interface für Sammlungen (Collections) von Objekten - Ausnahme Array - leider.
+
+Statische Funktionen die über **Collections.METHODNAME** aufgerufen werden können
+
+<img src="collection_methods.png" width="75%">
+
+Collections.unmodifiableList gibt die Unmodifizierbare Liste (ReadOnly zurück)<br>
+Collections.synchronizedList() gibt die ThreadSafe Liste zurück.
+
+Per Default sind alle Collection Klassen Thread Unsafe
 
 
 
 #Generics
+
+
 
 #Rekursion
 
