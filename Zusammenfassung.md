@@ -176,11 +176,47 @@ Collections.synchronizedList() gibt die ThreadSafe Liste zurück.
 
 Per Default sind alle Collection Klassen Thread Unsafe
 
-
+￼￼￼￼
 
 #Generics
 
+Defintion:
+Einen Algorithmus, der auf Werte von unterschiedlichen Datentypen angewandt werden kann, nennt man generisch.
 
+	List<Integer> list = new LinkedList<Integer>();	list.add(new Integer(99)); // oder dank Boxing: list.add(99);	Integer i = list.get(0); // oder dank Unboxing: int i = list.get(0); 	list.add(new Double(3.1415)); -->Compile-Error
+	list.add(new Object()); --> Compile Error	
+##Generic Klasse
+	class LinkedList<T> {
+	    public LinkedList(T item) {
+	      // Code
+	    }
+	
+	    public LinkedList(T[] items) {
+		  // Code
+	    }
+	
+	    public T getFirst() {
+	  	  // Code
+	    }
+	}
+
+##Extends
+
+	public void drawAll(List<? extends Figure> figures) {
+##Oberklasse festlegen
+
+	public void addRectangle (List<? super Rectangle> shapes) {
+##Bounded Wildcards
+	
+	public static <T, S extends T> void copy(List<T> est, List<S> src) {
+
+##Wildcards bei Rückgabe
+	
+	public List<? extends Number> getValueList () { }
+##Erasures
+Zur laufzeit werden die Typeninformationen vollständig entfernt. Aus Box<T> wird Box<Object>.
+Keine Typenprüfung möglich if (e instanceof List<LinkedList>).
+Beim Ablauf des Programms kann nicht mehr von z.B. LinkedList<String> und LinkedList<Integer> unterschieden werden.Beide habe zur Laufzeit den Typ LinkedList
 
 #Rekursion
 
