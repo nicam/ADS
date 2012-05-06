@@ -132,7 +132,7 @@ Alternativ kann auch mittels eines Comparators verglichen werden. Der Comparator
 (-) nur Referenztypen können in Listen verwaltet werden<br>
 (-) Indizierter Zugriff ineffizient list.get(i)<br>
 (+) Anzahl Elemente muss nicht bekannt sein<br>
-(+) Anfügen, ersetzten, vertauschen und Einfügen und Löschen sehr effizient
+(+) Anfügen, Ersetzen, Vertauschen, Einfügen und Löschen sehr effizient
 
 ### Array implementation der Liste (ArrayList)
 
@@ -348,6 +348,44 @@ Beim Einfügen muss links eingefügt werden, wenn das neue Element kleiner oder 
 #Suchen / Hashing
 
 #Sortieren 1
+##Sortieralgorithmen
+###Bubble Sort
+- Wiederholtes Vertauschen von Nachbarfeldern
+- von links nach rechts
+- fängt wieder von links an, wenn 2 Werte vertauscht
+
+Code
+
+	static <T extends Comparable> void BubbleSortG(T[] a){
+		for (int k = a.length-1; k > 0; k--) {
+			for (int i = 0; i < k; i++) {
+				if (a[i].compareTo(a[i+1]) > 0) swap (a, i, i+1);
+			}
+		}
+	}
+
+optimiert:
+- springt aus äusserer for wenn kein swap mehr notwendig
+
+Code
+
+	static <T extends Comparable> void BubbleSortG(T[] a){
+		for (int k = a.length-1; k > 0; k--) {
+			noSwap = true;
+			for (int i = 0; i < k; i++) {
+				if (a[i].compareTo(a[i+1]) > 0) {
+					swap (a, i, i+1);
+					noSwap = false;
+				}
+			}
+			if (noSwap) break;
+		}
+	}
+
+
+###Selection Sort
+- 
+###Insertion Sort
 
 #Soriteren 2
 
