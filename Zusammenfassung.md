@@ -5,7 +5,7 @@ Eine Anleitung zur Lösung einer Aufgabenstellung, die so präzise Formuliert is
 ###Determiniertheit
 Identische Einfgaben führen stetes zu identischen Ergebnissen
 
-###Determinusmus
+###Determinismus
 Ablauf des Verfahrens ist an jedem Punkt fest vorgeschrieben (keine Wahlfreiheit)
 
 
