@@ -323,6 +323,20 @@ Beginnend bei der Baumwurzel werden die Ebenen von links nach rechts durchlaufen
 - im linken Unterbaum sind alle kleineren Elemente KL <=* k 
 - im rechten Unterbaum sind alle grösseren Elemente: KR >* k
 
+####Einfügen
+Beim Einfügen muss links eingefügt werden, wenn das neue Element kleiner oder gleich ist, sonst rechts (rekursiv)
+
+####Löschen
+<img src="tree_delete.png" width="50%">
+
+- der Knoten hat keinen Teilbaum
+	- Knoten löschen 
+- der Knoten hat einen Teilbaum
+	- Vater des zu löschenden an Kind des zu löschenden hängen - der Knoten hat zwei Teilbäume
+	- Vom linken Teilbaum wird das Element ganz rechts als Ersatz genommen
+	- Dann gilt immer noch die Bedingung KL <=k und KR > k
+
+
 #Sortiere Bäume / Suchen
 
 #Graphen / Topologien
