@@ -91,11 +91,14 @@ Add bei doppelt verketten Listen
 ###Add()
 <img src="verkettet2_add.png">
 
-	newNode.next = current;	newNode.prev = current.prev;	current.prev.next = newNode;	current.prev = newNode;
+	newNode.next = current;
+	newNode.prev = current.prev;
+	current.prev.next = newNode;
+	current.prev = newNode;
 ###Remove()
 
 <img src="verkettet2_remove.png">
-	
+
 	current.prev.next = current.next;
 	current.next.prev = current.prev;
 	current = current.next;
@@ -136,27 +139,31 @@ Alternativ kann auch mittels eines Comparators verglichen werden. Der Comparator
 
 ### Array implementation der Liste (ArrayList)
 
-**LinkedList** 
-- schneller für Mutationen, langsam bei direktem Zugriff- non-synchronized Aufrufe
+**LinkedList**
+- schneller für Mutationen, langsam bei direktem Zugriff
+- non-synchronized Aufrufe
 
 **ArrayList**
-- Implementation als Array	- direkter Zugriff schnell
-	- Mutationen (einfügen, löschen) langsam- non-synchronized Aufrufe
+- Implementation als Array
+	- direkter Zugriff schnell
+	- Mutationen (einfügen, löschen) langsam
+- non-synchronized Aufrufe
 
 ##Sets
 Definition: eine ungeordnete Menge ohne Duplikate
 
 ###Implementation durch
-- Hashset bei grossen Datenbeständen (etwas) effizienter- TreeSet speichert die Elemente in alphabetischer (geordneter) Folge
+- Hashset bei grossen Datenbeständen (etwas) effizienter
+- TreeSet speichert die Elemente in alphabetischer (geordneter) Folge
 
 Code implementation
 
 	Set stooges = new HashSet();
-	stooges.add("Larry"); 
+	stooges.add("Larry");
 	stooges.add("Moe");
 	stooges.add("Curly");
 	stooges.add("Moe"); // Duplicate wont be added
-	stooges.add("Shemp"); 
+	stooges.add("Shemp");
 	stooges.add("Moe"); // Duplicate wont be added
 	System.out.println(stooges);
 
@@ -183,18 +190,22 @@ Per Default sind alle Collection Klassen Thread Unsafe
 Defintion:
 Einen Algorithmus, der auf Werte von unterschiedlichen Datentypen angewandt werden kann, nennt man generisch.
 
-	List<Integer> list = new LinkedList<Integer>();	list.add(new Integer(99)); // oder dank Boxing: list.add(99);	Integer i = list.get(0); // oder dank Unboxing: int i = list.get(0); 	list.add(new Double(3.1415)); -->Compile-Error
-	list.add(new Object()); --> Compile Error	
+	List<Integer> list = new LinkedList<Integer>();
+	list.add(new Integer(99)); // oder dank Boxing: list.add(99);
+	Integer i = list.get(0); // oder dank Unboxing: int i = list.get(0);
+	list.add(new Double(3.1415)); -->Compile-Error
+	list.add(new Object()); --> Compile Error
+
 ##Generic Klasse
 	class LinkedList<T> {
 	    public LinkedList(T item) {
 	      // Code
 	    }
-	
+
 	    public LinkedList(T[] items) {
 		  // Code
 	    }
-	
+
 	    public T getFirst() {
 	  	  // Code
 	    }
@@ -207,16 +218,17 @@ Einen Algorithmus, der auf Werte von unterschiedlichen Datentypen angewandt werd
 
 	public void addRectangle (List<? super Rectangle> shapes) {
 ##Bounded Wildcards
-	
+
 	public static <T, S extends T> void copy(List<T> est, List<S> src) {
 
 ##Wildcards bei Rückgabe
-	
+
 	public List<? extends Number> getValueList () { }
 ##Erasures
 Zur laufzeit werden die Typeninformationen vollständig entfernt. Aus Box<T> wird Box<Object>.
 Keine Typenprüfung möglich if (e instanceof List<LinkedList>).
-Beim Ablauf des Programms kann nicht mehr von z.B. LinkedList<String> und LinkedList<Integer> unterschieden werden.Beide habe zur Laufzeit den Typ LinkedList
+Beim Ablauf des Programms kann nicht mehr von z.B. LinkedList<String> und LinkedList<Integer> unterschieden werden.
+Beide habe zur Laufzeit den Typ LinkedList
 
 #Rekursion
 ##Definition
@@ -228,13 +240,21 @@ Bei der direkten Rekursion ruft sich eine Methode selbst wieder auf, bei der ind
 
 ####Iterativ
 	int anzahlSchritte() {
-		int anzahl = 0; 		while (vorn_frei()) {			vor();			anzahl++; 
-		}		return anzahl;	}
+		int anzahl = 0;
+ 		while (vorn_frei()) {
+			vor();
+			anzahl++;
+		}
+		return anzahl;
+	}
 ####Rekursiv
 	int anzahlSchritteR() {
-		if (vorn_frei()) {			vor();			return 1 + anzahlSchritteR(); 
-		} else			return 0;
-		}		
+		if (vorn_frei()) {
+			vor();
+			return 1 + anzahlSchritteR();
+		} else
+			return 0;
+		}
 	}
 ###Zusammenfassung
 - Zu jedem rekursiven Algorithmus gibt es einen äquivalenten iterativen Algorithmus
@@ -288,8 +308,8 @@ Code
 
     private void postorder(TreeNode<T> node, Visitor<T> visitor) {
         if (node != null) {
-            postorder(node.left,visitor); 
-            postorder(node.right,visitor); 
+            postorder(node.left,visitor);
+            postorder(node.right,visitor);
             visitor.visit(node.element);
         }
     }
@@ -306,9 +326,9 @@ Code
 
     private void inorder(TreeNode<T> node, Visitor<T> visitor) {
         if (node != null) {
-            inorder(node.left,visitor); 
+            inorder(node.left,visitor);
             visitor.visit(node.element);
-            inorder(node.right,visitor); 
+            inorder(node.right,visitor);
         }
     }
 
@@ -320,7 +340,7 @@ Beginnend bei der Baumwurzel werden die Ebenen von links nach rechts durchlaufen
 - dann die nächste Schicht
 
 ###Sortierte Bäume
-- im linken Unterbaum sind alle kleineren Elemente KL <=* k 
+- im linken Unterbaum sind alle kleineren Elemente KL <=* k
 - im rechten Unterbaum sind alle grösseren Elemente: KR >* k
 
 ####Einfügen
@@ -330,14 +350,90 @@ Beim Einfügen muss links eingefügt werden, wenn das neue Element kleiner oder 
 <img src="tree_delete.png" width="50%">
 
 - der Knoten hat keinen Teilbaum
-	- Knoten löschen 
+	- Knoten löschen
 - der Knoten hat einen Teilbaum
-	- Vater des zu löschenden an Kind des zu löschenden hängen - der Knoten hat zwei Teilbäume
+	- Vater des zu löschenden an Kind des zu löschenden hängen
+- der Knoten hat zwei Teilbäume
 	- Vom linken Teilbaum wird das Element ganz rechts als Ersatz genommen
 	- Dann gilt immer noch die Bedingung KL <=k und KR > k
 
 
 #Sortiere Bäume / Suchen
+
+##Zugriffszeiten
+- Die Zugriffszeit (Such- und Einfügezeit) von Elementen ist proportional zur Tiefe des Baumes
+- Probleme
+	- neue Knoten können nur unten angehägt werden
+	- bei unglücklicher Reihenfolge entstehen sehr ungleichmässige d.h. unbalancierte bäume
+- Minimale Tiefe des Baumes log2(n+1)
+- Bei einem vollen Binärbaum müssen lediglich ~ Log2 #Elemente Schritte durchgeführt werden bis Element gefunden wird.
+- Sehr effizient wenn gut verteilt
+- Im Worst case degeneriert der Baum zur Liste
+
+##Ausgeglichenheit
+- AVL- Ausgeglichenheit: Vollständig ausgeglichen: die Gewichte der beiden Teilbäume unterscheiden sich maximal um 1
+- Beim Einfügen und Löschen wird die AVL Ausgeglichenheit beibehalten
+- (+) Suchen ist schnell O(log(n)
+- (-) Einfügen und Löschen ist komplizierter
+
+##Rotation
+- Zum Wiederherstellen der Ausgleichsbedingung werden sog. Rotationen eingesetzt
+
+###Einzelrotation
+Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb eine Doppelrotation nötig ist.
+<img src="einzel_rotation.png" width="80%">
+
+###Doppelrotation
+<img src="doppel_rotation.png" width="80%">
+
+##B-Bäume
+<img src="bbaum.png" width="75%">
+
+- Binär-Bäume gut für Strukturen im Hauptspeicher (RAM)
+- Schlecht für Daten auf Disk
+	- Random Zugriffe sind sehr langsam
+- Idee: Baum so aufbauen, dass die wahlfreien Zugriffe auf Disk Blöcke minimiert werden
+	- möglichst viele Informationen pro Diskblock
+	- möglichst breiter Baum => Geringe Tiefe
+	- gleich grosse Knoten
+	- Baum ist immer ausgeglichen
+- Benannt nach Rudolf Bayer
+- Werden beim Einfügen / Löschen automatisch balanciert
+- jeder Knoten ausser der Wurzel hat mindestens n/2 und max n schlüssel
+- jeder Knoten ist entweder ein Blatt oder hat m+1 Nachfolger m = Anzahl Elemente im Knoten
+- Anwendung: Organisation der Daten auf Disk mit fester Blockgrösse, z.B. Windows NTFS-Filesystem.
+- mit wenigen Diskzugriffen kann ein bestimmter Datensatz gefunden werden. O(log N)
+- Indexe in Datenbanken
+- Für Schlüssel und Verweise gilt
+	- Innerhalb eines Knotens sind alle Schlüssel sortiert
+	- alle Schlüssel im j-1 (vorherigen) Knoten sind kleiner als der jte Knoten.
+	- alle Schlüssel im j+1 ten (nächsten) sind grösser oder gleich als der jte Knoten.
+
+###Spezielle Aktionen
+- Löschen:
+	- Element ist in einem Blatt: einfach löschen
+	- Element ist in einem inneren Knoten: grösstes Element des Kindknoten in den oberen Knoten schieben
+- Unterlauf: Ein Knoten enthält weniger als n/2 Schlüssel
+	- Zwei benachbarte Knoten werden zu einem zusammengefasst
+	- Oder "Ausleihen" bei einem Nachbarknoten
+- Überlauf: Knoten ist voll
+	- Mittlerer Wert des Überloffenen Knoten wird nach oben gezogen, linker und rechter teil des überlaufenen werden in 2 neue Knoten aufgeteilt.
+ 
+###Berechnungen
+- Anzahl Verweise = (Diskblock grösse - Verweise) / (Indexschlüssel + Verweise) (Aufgerundet)
+- Anzahl Blöcke = (Diskblock grösse - Verweise) / (Indexschlüssel + Verweise) (Abgerundet)
+- Tiefe des Baumes = log aus Anzahl Verweise von (Anzahl Elemente)
+- Anzahl Zugriffe: Proportional zu Tiefe des Baumes
+
+##2-3-4 Baum (Spezialfall eines B-Baums mit n=4)
+- B-Baum mit max. 4 Nachfolgern (im Hauptspeicher)
+
+##Rot-Schwarz Bäume
+<img src="redblacktree.png" width="80%">
+
+- Auf eine rote Kante muss immer eine schwarze Kante folgen
+- Vorteil: Einfachheit von Binärbäumen und Ausgeglichenheit von B-Bäumen
+- Weniger gut balanciert als AVL Baum, aber Einfüge und Löschoperationen sind schneller.
 
 #Graphen / Topologien
 
@@ -402,9 +498,12 @@ Code
 			}
 			if (min != k) swap (a, min, k);
 		}
-	}Aufwand: O(N^2)
-Vorteil: Weniger Swap-Aufrufe als bei Bubble-Sort
-Nachteil: kein Vorteil durch Vorsortierung
+	}
+
+Aufwand: O(N^2)
+Vorteil: Weniger Swap-Aufrufe als bei Bubble-Sort
+Nachteil: kein Vorteil durch Vorsortierung
+
 ###Insertion Sort
 
 #Soriteren 2
