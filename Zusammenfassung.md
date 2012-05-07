@@ -488,6 +488,8 @@ Worst Case: O(N^2)
 - Teile die zu sortierenden Elemente in 2 Bereiche auf
 - Füge des kleinste Element der unsortierten Elemente an das Ende der sortierten Elemente
 
+<img src="insertion_sort.png" width="80%">
+
 Code
 
 	static void SelectionSort(char[] a){
@@ -505,6 +507,44 @@ Vorteil: Weniger Swap-Aufrufe als bei Bubble-Sort
 Nachteil: kein Vorteil durch Vorsortierung
 
 ###Insertion Sort
+####Idee
+- Aufteilung in sortierten und unsortierten Bereich
+- Das nächste unsortierte Element wird herausgenommen -> es entsteht eine Lücke
+- Die Lücke rückt solange nacht links, bis am richtigen Ort ist
+- Dort wird sie eingefüllt
+
+<img src="selection_sort.png" width="80%">
+
+Code
+
+	static void InsertionSort(char[] a){
+		for (int k = 1; k < a.length; k++) {
+			if (a[k] < a[k-1]){
+				char x = a[k];
+				int i;
+				for (i = k; ((i > 0) && (a[i-1] > x));i--) {
+					a[i] = a[i-1];
+				}
+				a[i] = x;
+			}
+		}
+	}
+
+Vorteile:
+- Gerinngere Laufzeit als Insertion-Sort bei vorsortierter Liste
+- Durchschnittlich nur halbe Anzahl Vergleiche vgl. mit Insertion Sort
+Nachteile:
+- Mehr Swaps als Insertion-Sort
+
+###Anwendung Selection - Insertion
+Selection:
+- Lange Datensätze
+- Völlig unsortierte Daten
+
+Insertion:
+- Kurze Datensätze
+- Gut vorsortiert
+
 
 #Soriteren 2
 
