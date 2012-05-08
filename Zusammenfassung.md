@@ -444,12 +444,20 @@ Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb e
 #Suchen / Hashing
 
 #Sortieren 1
-###Interner  Sortiervorgang
+##Interner  Sortiervorgang
 Zu sortierende Daten werden im Arbeitsspeicher abgelegt
-###Externer Sortiervorgang
+
+##Externer Sortiervorgang
 1. Teilen: Daten werden für Hauptspeicher verkleinert
 2. Internes Sortieren
 3. Zusammenfügen der sortierten Daten
+
+##Sortierschlüssel
+- Def: Sind Kriterien, nach denen sortiert wird
+- Eindeutige Sortierschlüssel: in rel. DB's, id
+
+
+
 ##Sortieralgorithmen
 ###Bubble Sort
 - Wiederholtes Vertauschen von Nachbarfeldern
