@@ -591,6 +591,16 @@ Insertion:
 - Gut vorsortiert
 
 
+## Sort performance
+<img src="sort_performance.png" width="80%">
+
+###Ordnung vs Laufzeit
+- Laufzeit: besagt, wie stark sich der Aufwand bei zunehmender Anz. Daten vergrössert
+- Ordnung: besagt, wie lange das Programm benötigt
+
+###Extrapolierung
+Bsp: O(n^2) -> k1 * n^2 + k2 * n + k3
+
 #Soriteren 2
 
 #Speicherverwaltung
