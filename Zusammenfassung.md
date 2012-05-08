@@ -444,6 +444,12 @@ Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb e
 #Suchen / Hashing
 
 #Sortieren 1
+###Interner  Sortiervorgang
+Zu sortierende Daten werden im Arbeitsspeicher abgelegt
+###Externer Sortiervorgang
+1. Teilen: Daten werden für Hauptspeicher verkleinert
+2. Internes Sortieren
+3. Zusammenfügen der sortierten Daten
 ##Sortieralgorithmen
 ###Bubble Sort
 - Wiederholtes Vertauschen von Nachbarfeldern
