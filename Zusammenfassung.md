@@ -456,7 +456,38 @@ Zu sortierende Daten werden im Arbeitsspeicher abgelegt
 - Def: Sind Kriterien, nach denen sortiert wird
 - Eindeutige Sortierschlüssel: in rel. DB's, id
 
+##Java Sortiering
 
+###Comparable Interface
+Nachteil: nur eine Sortierreihenfolge möglich
+
+Code
+	
+	public interface Comparable<T> {
+		public int compareTo(T obj);
+	}
+
+- \> 0 bei b \> a
+- \< 0 bei a \< b
+- == 0 bei a == b
+
+###Comparator Interface
+Code
+
+	public interface Comparator<T> {
+		int compare(T obj1, T obj2);
+		
+		boolean equals(T obj1, T obj2);
+	}
+
+###Collator Klasse
+Sortierung in Swiss German
+
+Code
+		
+		Locale loc = new Locale("de","CH");
+		Collator col = Collator.getInstance(loc);
+		Collections.sort(a, col)
 
 ##Sortieralgorithmen
 ###Bubble Sort
