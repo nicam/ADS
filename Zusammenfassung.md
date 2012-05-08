@@ -118,6 +118,8 @@ Add bei doppelt verketten Listen
 ### Sortierte Listen
 - Verwenden Comparator um bei Insert das Objekt an der richtigen Stelle einzufügen
 
+<br><br><br><br><br>
+
 ###Liste Sortieren
 Sofern das Listenobjekt Comparable implementiert, kann mit dieser Methode die Liste sortiert werden.
 
@@ -163,6 +165,8 @@ Definition: eine ungeordnete Menge ohne Duplikate
 - Hashset bei grossen Datenbeständen (etwas) effizienter
 - TreeSet speichert die Elemente in alphabetischer (geordneter) Folge
 
+<br>
+
 Code implementation
 
 	Set stooges = new HashSet();
@@ -177,7 +181,7 @@ Code implementation
 ###Vergleiche von 2 Sets (A und B)
 <img src="set_comparison.png" width="70%">
 
-
+<br><br><br><br><br><br><br><br><br><br><br>
 ##Collection Interface
 Gemeinsames Interface für Sammlungen (Collections) von Objekten - Ausnahme Array - leider.
 
@@ -202,6 +206,8 @@ Einen Algorithmus, der auf Werte von unterschiedlichen Datentypen angewandt werd
 	Integer i = list.get(0); // oder dank Unboxing: int i = list.get(0);
 	list.add(new Double(3.1415)); -->Compile-Error
 	list.add(new Object()); --> Compile Error
+
+<br><br><br><br><br><br>
 
 ##Generic Klasse
 	class LinkedList<T> {
@@ -236,7 +242,7 @@ Zur laufzeit werden die Typeninformationen vollständig entfernt. Aus Box<T> wir
 Keine Typenprüfung möglich if (e instanceof List<LinkedList>).
 Beim Ablauf des Programms kann nicht mehr von z.B. LinkedList<String> und LinkedList<Integer> unterschieden werden.
 Beide habe zur Laufzeit den Typ LinkedList
-
+<br><br><br>
 #Rekursion
 ##Definition
 Ein Algorithmus/Datenstruktur heisst rekursiv definiert, wenn er/sie sich selbst als Teil enthält oder mit Hilfe von sich selbst definiert ist.
@@ -287,7 +293,7 @@ Die am häufigsten verwendete Art von Bäumen: beim Binärbaum hat ein Knoten m
 ln(10)/ln(2) (Aufrunden)
 Maximale Anzahl
 (2^k)-1 (k = tiefe)
-
+<br><br><br><br><br>
 ###Traversieren
 
 ####Klassen zur Traversierung
@@ -305,6 +311,7 @@ Code
 		preorder(node.left,visitor);
 		preorder(node.right,visitor);
 	}
+<br><br><br><br>
 
 ####Postorder (Unten nach Oben)
 - Traversiere den linken Teilbaum (in Postorder)
@@ -376,6 +383,7 @@ Beim Einfügen muss links eingefügt werden, wenn das neue Element kleiner oder 
 - Bei einem vollen Binärbaum müssen lediglich ~ Log2 #Elemente Schritte durchgeführt werden bis Element gefunden wird.
 - Sehr effizient wenn gut verteilt
 - Im Worst case degeneriert der Baum zur Liste
+<br><br><br><br><br><br><br>
 
 ##Ausgeglichenheit
 - AVL- Ausgeglichenheit: Vollständig ausgeglichen: die Gewichte der beiden Teilbäume unterscheiden sich maximal um 1
@@ -389,12 +397,14 @@ Beim Einfügen muss links eingefügt werden, wenn das neue Element kleiner oder 
 ###Einzelrotation
 Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb eine Doppelrotation nötig ist.
 <img src="einzel_rotation.png" width="80%">
+<br><br><br><br><br><br><br><br><br><br><br><br>
 
 ###Doppelrotation
 <img src="doppel_rotation.png" width="80%">
 
 ##B-Bäume
 <img src="bbaum.png" width="75%">
+<br><br><br><br><br><br><br><br>
 
 - Binär-Bäume gut für Strukturen im Hauptspeicher (RAM)
 - Schlecht für Daten auf Disk
@@ -431,6 +441,8 @@ Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb e
 - Anzahl Blöcke = (Diskblock grösse - Verweise) / (Indexschlüssel + Verweise) (Abgerundet)
 - Tiefe des Baumes = log aus Anzahl Verweise von (Anzahl Elemente)
 - Anzahl Zugriffe: Proportional zu Tiefe des Baumes
+
+<br><br><br><br>
 
 ##2-3-4 Baum (Spezialfall eines B-Baums mit n=4)
 - B-Baum mit max. 4 Nachfolgern (im Hauptspeicher)
@@ -485,6 +497,7 @@ Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb e
 - (+) einfach zu implementieren
 - (+) gut falls der Graph dicht
 
+<br><br><br><br><br><br><br><br><br><br>
 
 ##Graph Algorithmen
 
@@ -508,6 +521,8 @@ Ausgehend von einem Startknoten betrachtet man zuerst alle benachbarten Knoten (
 - Ist ein Baum eines Graphen der alle Knoten des Graphen enthält
 - Minimaler Spannbaum verbindet einen Graphen so, das die Summe aller Kanten minimal ist
 - Kann mit Prim-Jarnik oder Dijkstra gelöst werden
+
+<br><br>
 
 ##Maximaler Fluss
 - Maximaler durchfluss zwischen 2 Knoten
