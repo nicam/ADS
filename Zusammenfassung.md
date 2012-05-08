@@ -5,6 +5,7 @@ Eine Anleitung zur Lösung einer Aufgabenstellung, die so präzise Formuliert is
 ###Determiniertheit
 Identische Einfgaben führen stetes zu identischen Ergebnissen
 
+
 ###Determinismus
 Ablauf des Verfahrens ist an jedem Punkt fest vorgeschrieben (keine Wahlfreiheit)
 
@@ -30,6 +31,7 @@ Vorbedingung -> f(x) -> Nachbedingung
 #ADT / Stacks / Queues
 
 ADT = Abstrakte Datentypen
+
 
 ##Stacks
 - Speichert Objekte als Stapel
@@ -68,7 +70,7 @@ Anwendungszwecke
 	- Stack, Queue
 	- Disk-Blöcke, Prozesse, Threads
 	- Anzahl der Elemente zur ERstellungszeit offen
-	- Reihenfolge, position ist relevant
+	- Reihenfolge, position ist relevant	
 - Funktioniert mit zeigern
 	- Attribute der Nodes: next, data
 	- LinkedList Attribut first
@@ -94,7 +96,7 @@ Add bei doppelt verketten Listen
 	newNode.next = current;
 	newNode.prev = current.prev;
 	current.prev.next = newNode;
-	current.prev = newNode;
+	current.prev = newNode;	
 ###Remove()
 
 <img src="verkettet2_remove.png">
@@ -436,6 +438,10 @@ Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb e
 - Weniger gut balanciert als AVL Baum, aber Einfüge und Löschoperationen sind schneller.
 
 #Graphen / Topologien
+
+
+Knoten werden auch vertices bzw. vertex genannt
+Kanten heissen auch edges bzw. edge
 
 #Backtracking
 
