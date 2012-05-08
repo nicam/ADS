@@ -28,9 +28,12 @@ Vorbedingung -> f(x) -> Nachbedingung
 - Variablen sind nur Referenzen (Zeiger auf Objekte im Speicher)
 
 
+<br><br><br><br><br><br><br>
+<br><br><br><br>
 #ADT / Stacks / Queues
 
 ADT = Abstrakte Datentypen
+
 
 
 ##Stacks
@@ -62,6 +65,7 @@ Anwendungszwecke
 - Objekte gleicher Priorität werden in derselben Reihenfolge entfernt wie sie eingefügt wurden.
 - Anwendungszwecke: (Scheduling von Prozessen, Aufgabenliste nach Prioritäten)
 
+<br><br><br><br><br><br><br><br>
 
 #Listen
 - Grundlegende Datenstrucktur
@@ -97,6 +101,7 @@ Add bei doppelt verketten Listen
 	newNode.prev = current.prev;
 	current.prev.next = newNode;
 	current.prev = newNode;	
+<br><br><br>	
 ###Remove()
 
 <img src="verkettet2_remove.png">
@@ -439,9 +444,82 @@ Gewisse Konstelationen sind nach einzelrotation noch nicht balanciert, weshalb e
 
 #Graphen / Topologien
 
+##Allgemeines
 
-Knoten werden auch vertices bzw. vertex genannt
-Kanten heissen auch edges bzw. edge
+- Knoten sind Objekte mit Namen und anderen Attributen
+- Knoten werden auch vertices bzw. vertex genannt
+- Knaten sind die Verbindungen zwei Knoten
+- Kanten heissen auch edges bzw. edge
+- **Verbundener Graph** ist jeder Knoten mit jedem anderen Verbunden
+- **Verbundener Teilgraph** Gesamter Graph besteht aus untereinander nicht verbundenen Teilgraphen
+- Kanten **gerichtet** und/oder mit **Gewicht**
+<img src="graphs.png" width="90%">
+
+###Gewichtete Graphen
+- Gewichtete Graphen haben Gewichte an den Kanten z.B. Kosten
+- Gewichtete gerichtete Graphen werden Netzwerk genannt
+- Gewichtete Pfadlänge = Summe der Kosten der Kanten auf dem Pfad
+
+##Grapheneigenschaften
+- Kompletter Graph: Jeder Knoten ist mit jedem anderen verbunden
+- Dichter Graph (dense) nur wenige Kanten fehlen
+- Dünner Graph (sparse) nur wenige kanten sind vorhanden
+
+- Pfadlänge = Anzahl Kanten des Pfades
+- Sind Anfangs und Endknoten gleich, ist es ein Zyklischer Pfad
+- Graphen mit zyklischen Pfaden werden zyklische Graphen genannt
+- Einge Gruppe nicht zusammenhängender Bäume heisst Wald
+
+
+##Adjazen-Liste
+- jeder Knoten führt (Adjazenz-) Liste, welch alle Kanten zu den benachbarten Knoten enthält
+- Dabei wird für jede Kante ein Eintrag bestehend aus dem Zielknoten und weiteren Attributen (z.B. Gewicht) erstellt.
+- (+) Platzbedarf ist proportional zu Knotenzahl + Kantenzahl
+- Effizient der Suche abhängig von der mittleren Anzahl ausgehender Kanten pro Knoten
+
+##Adjazen-Matrix
+- Eine Tabelle die die Gewichte der Direkten Kanten enthält.
+- (-) ziemlicher (Speicher-)Overhead
+- (-) teure initialisierung, wächst O(n2)
+- (+) effizient
+- (+) einfach zu implementieren
+- (+) gut falls der Graph dicht
+
+
+##Graph Algorithmen
+
+###Traversierungen
+<img src="breitentiefe.png" width="50%">
+####Tiefensuche (depth-first)
+Ausgehend von einem Startknoten geht man vorwärts (tiefer) zu einem neuen unbesuchten Knoten, solange einer vorhanden (d.h. erreichbar) ist. Hat es keine weiteren (unbesuchten) Knoten mehr, geht man rückwärts und betrachtet die noch unbesuchten Knoten. Entspricht der **Preorder** Traversierung bei Bäumen.
+####Breitensuche (breadth-first)
+Ausgehend von einem Startknoten betrachtet man zuerst alle benachbarten Knoten (d.h. auf dem gleichen Level), bevor man einen Schritt weitergeht. Entspricht der Levelorder Traversierung bei Bäumen
+
+####Dijkstra
+- Knoten werden in 3 Gruppen aufgeteilt
+	- besucht
+	- benachbart zu aktivem
+	- unbesehene Knoten (rest)
+- 1. suche unter benachbarten den mit dem kleinsten Gewicht
+- 2. Besuch diesen, markiere
+- 3. suche wieder benachbarte unbesehende mit geringstem Gewicht.
+
+####Spannbaum (Spanning Tree)
+- Ist ein Baum eines Graphen der alle Knoten des Graphen enthält
+- Minimaler Spannbaum verbindet einen Graphen so, das die Summe aller Kanten minimal ist
+- Kann mit Prim-Jarnik oder Dijkstra gelöst werden
+
+##Maximaler Fluss
+- Maximaler durchfluss zwischen 2 Knoten
+- Wird durch Bottlenecks begrenzt
+- Wenn mehrere Pfade zum Ziel führen, werden diese Aufsummiert
+
+##Traveling Salesman
+- Finden einer geschlossenen Reiseroute bei der jede Stadt nur einmal besucht wird
+- manchmal garkeine Lösung
+- Bestimmung kürzester weg nur durch probieren -> O(a^n)
+- n Anzahl der Kanten
+- Aufwand ist exponentiel, d.h. bei hinzufügen der Kante, verdoppelt sich der Aufwand
 
 #Backtracking
 
