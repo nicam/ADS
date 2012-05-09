@@ -537,6 +537,94 @@ Ausgehend von einem Startknoten betrachtet man zuerst alle benachbarten Knoten (
 - Aufwand ist exponentiel, d.h. bei hinzufügen der Kante, verdoppelt sich der Aufwand
 
 #Backtracking
+##Trial and Error (Versuch und Bewertung)
+- Ziemlich rechenintensiv
+- zwei mögliche Resultate 
+	- akzeptable Lösung
+	- beste Lösung
+
+##Entscheidungsbaum
+- Es entsteht so ein virtueller Entscheidungsbaum. Jede Entscheidung (Verzweigung) entspricht darin einem Knoten.
+- Teillösungen werden systematisch zu Gesamtlösungen erweitert bis Lösung gefunden oder Erweitern nicht mehr möglich ist (->Sackgasse).
+- Bei Sackgasse werden ein oder mehrere Schritte rückgängig gemacht und von dort aus wird versucht, eine Lösung zu finden
+- Aus Sackgassen einen Weg zurück finden wird als Backtracking bezeichnet
+
+Code
+
+    boolean search (Node currentNode) {     
+        mark currentNode;
+        if currentNode == goal return true;
+        else {
+            for all nodes n adjacent to currentNode { 
+                if (!(marked(n)) {
+                  if (search(n)) return true;
+                }
+            }
+        }
+        unmark currentNode;
+        return false;
+    }
+
+##Kombinatorische Explosion
+- Das Problem der Versuch und Irrtum Methode ist, dass alle möglichen Kombinationen ausprobiert werden müssen.
+- Die Anzahl der möglichen Fälle (Kombinationen) wächst kn oder n!
+- für relativ kleine Werte (n~10-100) dauert die Berechnung zu lange
+
+##Zielfunktion
+- man wählt nur die Lösung aus, die zum Ziel führt
+- man berechnet zu jedem Knoten im Entscheidungsbaum den Zielwert, den man über diesen Knoten erreichen kann
+- gehe der Kante entlang (wähle die Teillösung aus), die zum Knoten mit dem höchsten Zielfunktionswert führt
+- Aber: zur Berechnung der Zielfunktion muss das Problem meist schon gelöst sein, d.h. z.B. der Entscheidungsbaum unterhalb des Knotens vollständig durchlaufen sein -> wir haben nichts gewonnen.
+
+##Geschätzte obere Schranke
+- Es wird eine Funktion festgelegt, die immer bessere Werte (zu optimistisch) liefert als die exakte Zielfunktion
+- Obere Schranke b(v) Schätzfunktion >= f(v) Zielfunktion
+
+##Bestfirst Search
+- gehe dem Pfad mit dem höchsten Bound-Wert zuerst entlang
+- korrigiere den Geschätzten Weg des Betrachteten Wertes anhand der echten Werte.
+- Bound Wert ist das Maximum der Bound Werte der direkten Nachfolger
+
+###Abschneiden (cutoff, Pruning)
+- falls eine bereits gefundene Lösung besser ist, als der geschätzte best mögliche Wert, dann muss dieser Teilbaum nicht mehr betrachtet werden.
+- Abschneiden der Äste im Entscheidungsbaum wird als Pruning bezeichnet
+
+<img src="bound.png" width="80%"> 
+
+
+###Branch & Bound
+- hilft das Problem der kombinatorischen Explosion einzudämmen
+- setzt aber eine Schätzfunktion voraus die nicht einen zu grossen Aufwand benötigt
+- gute b(v) Funktion zu bestimmen ist schwierig
+
+###Horizont Effekt
+- Berechnung muss nach n Zügen abgebrochen werden
+- Dieser Punkt wird als der Horizont bezeichnet
+- Problem:
+    - Hinter dem Horizont kann sich die gefundene Lösung als schlecht erweisen
+- Lösung:
+    - Ausgewählte Lösung noch ein paar Stufen weiter ausrechnen
+
+##Simulated Annealing
+- Einfache Suchalgoritmen (Hill Climbing)
+    - Bricht ab wenn kein Nachbar einen höheren Wert hat
+    - Lokales aber nicht Globales Optimum kann als Lösung gefunden werden
+    - Lösung hängt von Startbedingung ab
+- komplexerer Evaluationalgorithmus
+    - Akzeptiere manchmal auch Kandidaten die höhere Kosten haben um aus lokalem Optima herauszukommen
+    - Passe die Parameter der Evaluation während des Programmverlaufs langsam an
+###Simulated Annealing
+- Analogie zu Festkörper Abkühlung
+- Startwert festlegen (t)
+- Stören
+- Sobald gleichgewichstszustand erreicht wird, t weiter eintschränken
+- Wiederholen
+- (+) Einfacher Ansatz
+- (+) Einzig die Kostenfunktion muss bekannt sein
+- (-) Braucht viel Rechenzeit
+- (-) Resultate sind nicht reproduzierbar
+- (-) Bestes Zwischenresultat muss gemerkt werden, da man sich vom Optimum wieder entfernen kann
+
 
 #Algorithmen Aufwand
 
