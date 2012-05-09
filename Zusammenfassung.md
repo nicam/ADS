@@ -625,10 +625,73 @@ Code
 - (-) Resultate sind nicht reproduzierbar
 - (-) Bestes Zwischenresultat muss gemerkt werden, da man sich vom Optimum wieder entfernen kann
 
-
 #Algorithmen Aufwand
 
+
+
+
 #Suchen / Hashing
+Invariante ist eine Bedingung, die erhalten bleibt
+##Binäres Suchen
+<img src="binarysearch.png" width="90%">
+Aufwand O(log2(n))
+
+##Hashing
+
+###Hash Funktion
+Funktion welche den grosen Wertebereich auf einen kleineren Abbildet z.b. X modulo tableSize
+
+Da Hash Funktion nicht eindeutig muss Originalwert in zusätzlichem Array gespeichert werden
+Wenn 2 Werte den gleichen Hash haben, nennt man das Kollision
+Gute Hashfunktionen mit einer Primzahl
+h(x) = k % M | M e Primzahl
+
+###Kollisionsauflösung 1: Seperate Chaining
+Hashtable dient als Ankerpunkt für Listen aller Objekte die deng leichen HashWert haben
+- (-) Overhead durch Verwendung einer weiteren Datenstruktur
+- (+) Funktioniert auch noch bei LoadFaktor nahe oder grösser 1
+
+####Modulo
+4371%10 = 1 (Rest bei division durch 10)
+
+###Kollisionsauflösung 2: Open Addressing
+Techniken, wo bei Kollision eine freie Zelle sonstwo in der HashTable gesucht wird.
+
+- Setzt einen LoadFactor < ~0.8 voraus.
+
+####Lineares Sondieren
+- Lineares Sondieren (linear Probing) sequentiell nach nächster freier Zelle Suchen
+####Quadratisches Sondieren
+- Quadratisches Sondieren (Quadratic Probing) in wachsenden Schritten nach freier Stelle suchen (F+1, F+4, F+16, F+25 F+i^2)
+
+    currentPos += 2 * ++collisionNum - 1;
+    currentPos = currentPos % array.length;
+
+<img src="quadprobing.png">
+
+####Löschen
+- Wenn ein Wert gelöscht wird, müssen alle Werte die potentielle Ausweichzellen sind, geöscht und wieder eingefügt werden (rehashing)
+- Oder gelöschte Zelle als gelöscht markieren
+
+###Vor und Nachteile von Hashing
+####Vorteile
+- Suchen / Einfügen sehr effizient
+- Hash Tabellen können im gegensatz von Binären Bäumen kaum degenerieren
+- Implementationsaufwand ist geringer als der für ausgeglichene bin Bäume
+
+####Nachteile
+- Das kleinste oder grösste Element lässt sich nicht einfach finden
+- Geordnete Ausgabe nicht möglich
+- Suche nach Werten in einem bestimmten Bereich oder das finden eines Strings wenn nur Anfang bekannt ist nicht möglich
+
+Hash-Tabellen sind geeignet wenn: die Reihenfolge nicht von Bedeutung ist nicht nach Bereichen gesucht werden muss die ungefähre (maximale) Anzahl bekannt ist
+
+###Extendible Hashing
+- Idee: verwende Verzeichnis von Verweisen zu Buckets
+- Hashfunktion (Modulo) ist abhängig von der Anzahl Bits im Verzeichnis (tiefe des Arrays)
+- Sobald ein Bucket voll, muss Verzeichnissstiefe verdoppelt werden (aus modulo 4 wird 8)
+- Danach Werte neu verteilen
+- Impelementiert in Java als HashMap (besser) und Hashtable
 
 #Sortieren 1
 ##Interner  Sortiervorgang
