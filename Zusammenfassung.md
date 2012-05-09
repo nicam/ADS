@@ -783,7 +783,7 @@ Worst Case: O(N^2)
 - Teile die zu sortierenden Elemente in 2 Bereiche auf
 - Füge des kleinste Element der unsortierten Elemente an das Ende der sortierten Elemente
 
-<img src="insertion_sort.png" width="80%">
+<img src="selection_sort.png" width="80%">
 
 Code
 
@@ -808,7 +808,7 @@ Nachteil: kein Vorteil durch Vorsortierung
 - Die Lücke rückt solange nacht links, bis am richtigen Ort ist
 - Dort wird sie eingefüllt
 
-<img src="selection_sort.png" width="80%">
+<img src="insertion_sort.png" width="80%">
 
 Code
 
@@ -845,8 +845,8 @@ Insertion:
 <img src="sort_performance.png" width="80%">
 
 ###Ordnung vs Laufzeit
-- Laufzeit: besagt, wie stark sich der Aufwand bei zunehmender Anz. Daten vergrössert
-- Ordnung: besagt, wie lange das Programm benötigt
+- Ordnung: besagt, wie stark sich der Aufwand bei zunehmender Anz. Daten vergrössert
+- Laufzeit: besagt, wie lange das Programm benötigt
 
 ###Extrapolierung
 Bsp: O(n^2) -> k1 * n^2 + k2 * n + k3
